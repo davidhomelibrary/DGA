@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DGA | German Army</title>
+    <title>DGA | Information Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg: #000000; /* Pure Black as requested */
+            --bg: #000000;
             --discord-blue: #5865F2;
             --hierarchy-orange: #FF8C00;
             --glass: rgba(255, 255, 255, 0.03);
@@ -87,14 +87,39 @@
             font-size: clamp(3rem, 10vw, 5rem);
             letter-spacing: 10px;
             color: var(--text-main);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
 
-        .hero-line {
-            width: 60px;
-            height: 4px;
+        .hero p {
+            color: var(--text-dim); 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .main-discord-btn {
             background: var(--discord-blue);
-            margin-bottom: 20px;
+            color: white;
+            text-decoration: none;
+            padding: 15px 35px;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: 1px solid var(--discord-blue);
+        }
+
+        .main-discord-btn:hover {
+            background: transparent;
+            color: var(--discord-blue);
         }
 
         /* --- Hierarchy Section --- */
@@ -112,7 +137,7 @@
             text-transform: uppercase;
         }
 
-        /* --- Division Dossier Buttons --- */
+        /* --- Division Dossiers --- */
         .division-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -128,8 +153,6 @@
             padding: 30px;
             cursor: pointer;
             transition: 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
         .dossier-card:hover {
@@ -240,8 +263,10 @@
 
     <section class="hero">
         <h2>BUNDESWEHR</h2>
-        <div class="hero-line"></div>
-        <p style="color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Strategic Command Portal</p>
+        <p>DGA Information Page</p>
+        <a href="#" class="main-discord-btn">
+            <i data-lucide="message-square"></i> Join Main Discord
+        </a>
     </section>
 
     <div class="hierarchy-header">
@@ -249,7 +274,6 @@
     </div>
 
     <div class="division-container">
-        
         <div class="dossier-card" onclick="this.classList.toggle('active')">
             <h3><i data-lucide="truck"></i> 1st Panzer Division</h3>
             <span class="tap-hint">Open Dossier</span>
@@ -370,7 +394,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <footer>
