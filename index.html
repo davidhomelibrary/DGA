@@ -37,40 +37,39 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px 40px;
+            padding: 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             background: var(--glass);
             backdrop-filter: var(--blur);
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 100px;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
         .logo-text h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--discord-blue);
             line-height: 1;
         }
 
         .logo-text p {
-            font-size: 0.65rem;
+            font-size: 0.55rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: var(--text-dim);
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section Fix (Prevents 'B' from cutting off) --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -78,24 +77,26 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 0 20px;
             background: radial-gradient(circle at center, #111 0%, #000 100%);
         }
 
         .hero h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 10vw, 5rem);
-            letter-spacing: 10px;
+            /* Scaled down slightly for mobile safety */
+            font-size: clamp(2.2rem, 11vw, 4.5rem); 
+            letter-spacing: 5px; 
             color: var(--text-main);
             margin-bottom: 5px;
             text-transform: uppercase;
+            width: 100%;
         }
 
         .hero p {
             color: var(--text-dim); 
             letter-spacing: 2px; 
             text-transform: uppercase; 
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-bottom: 30px;
         }
 
@@ -103,11 +104,11 @@
             background: var(--discord-blue);
             color: white;
             text-decoration: none;
-            padding: 15px 35px;
+            padding: 15px 30px;
             border-radius: 5px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             display: flex;
@@ -133,7 +134,7 @@
         .hierarchy-header h2 {
             font-family: 'Montserrat', sans-serif;
             color: var(--hierarchy-orange);
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-transform: uppercase;
         }
 
@@ -230,7 +231,7 @@
             transition: 0.3s;
         }
 
-        .primary { background: var(--discord-blue); color: white; }
+        .primary { background: var(--discord-blue); color: white; border: 1px solid var(--discord-blue); }
         .outline { border: 1px solid #333; color: white; }
         .action-btn:hover { background: white; color: black; }
 
@@ -280,8 +281,8 @@
             <div class="dossier-content">
                 <p class="description">It is an armored division of the bundeswehr. Learn to use vehicles like tanks, APC’s, Humvees, and more! Man Drup - Man To!</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
-                    <span><strong>XO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                    <span><strong>XO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -296,7 +297,7 @@
             <div class="dossier-content">
                 <p class="description">This is a unique division made to guard the skies! From flying Planes to flying Transport Helicopters. Always in Action!</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -311,7 +312,7 @@
             <div class="dossier-content">
                 <p class="description">In this division we keep our trusted officials safe🎖️ From preventing surprise attacks to protests. Get Behind It!</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -326,7 +327,7 @@
             <div class="dossier-content">
                 <p class="description">We guard bases and important buildings. From checking id’s and preventing protests to arresting a person that has broken a rule. Everywhere. Anytime. For Everyone.</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -341,7 +342,7 @@
             <div class="dossier-content">
                 <p class="description">We protect and defend our seas! From catch my smugglers to going on marinetime operations. We. Serve. Germany.</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -356,7 +357,7 @@
             <div class="dossier-content">
                 <p class="description">We strike fast as frontline infantry. We protect the fatherland. Cooperative with naval forces. From land to sea - from sea to land.</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -371,7 +372,7 @@
             <div class="dossier-content">
                 <p class="description">We are the best of the best🇩🇪 From going on airborne to stopping violent protests or responding to terrorist attacks. Ready to deploy - any time - anywhere.</p>
                 <div class="hicom-box">
-                    <span><strong>CO:</strong> Awaiting Data</span>
+                    <span><strong>CO:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
@@ -386,7 +387,7 @@
             <div class="dossier-content">
                 <p class="description">We are the officials. We send, protect, and plan. To The German People!🫡</p>
                 <div class="hicom-box">
-                    <span><strong>CHANC:</strong> Awaiting Data</span>
+                    <span><strong>CHANC:</strong> Personnel Assigned</span>
                 </div>
                 <div class="btn-group">
                     <a href="#" class="action-btn primary">Discord</a>
