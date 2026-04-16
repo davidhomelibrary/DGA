@@ -3,187 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DGA | Davidhomelibrary's German Army</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>DGA | Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root { --dga-blue: #3b82f6; --dga-grey: #1a1a1a; }
-        body { background-color: #050505; color: #e5e5e5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .hero-gradient { background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent); }
-        .btn-hover { transition: all 0.3s ease; }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5); }
-        .division-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .division-card:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--dga-blue); }
-        html { scroll-behavior: smooth; }
+        :root {
+            --bg: #0f1011;
+            --discord-blue: #5865F2;
+            --hierarchy-orange: #FF8C00;
+            --card-bg: #1e1f22;
+            --text-main: #ffffff;
+            --text-dim: #b5bac1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif; /* Formal, modern body font */
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif; /* Sharp, authoritative headings */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1c1e 0%, #0f1011 100%);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+            letter-spacing: 8px;
+            color: var(--discord-blue);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 600px;
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        /* Hierarchy Section */
+        .hierarchy-section {
+            padding: 80px 20px;
+            background: #151618;
+            border-top: 3px solid var(--hierarchy-orange);
+            text-align: center;
+        }
+
+        .hierarchy-section h2 {
+            color: var(--hierarchy-orange);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        /* Division Grid */
+        .division-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 60px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .division-btn {
+            background: var(--card-bg);
+            border: 1px solid #2d2f33;
+            padding: 30px;
+            border-radius: 4px; /* Sharper corners for a more military/formal feel */
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-align: left;
+            position: relative;
+        }
+
+        .division-btn:hover {
+            border-color: var(--discord-blue);
+            background: #25272b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .division-btn h3 {
+            color: var(--discord-blue);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+        }
+
+        .status-text {
+            font-size: 0.7rem;
+            color: #555;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .division-info {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            animation: slideUp 0.4s ease;
+        }
+
+        .division-btn.active .division-info {
+            display: block;
+        }
+
+        .desc {
+            color: #d1d4d7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        .hicom-list {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-left: 3px solid var(--hierarchy-orange);
+            margin-bottom: 20px;
+        }
+
+        .hicom-list span {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .hicom-list strong {
+            color: var(--hierarchy-orange);
+        }
+
+        .links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .link-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .ds-btn { background: var(--discord-blue); color: white; }
+        .rbx-btn { background: transparent; border: 1px solid #444; color: white; }
+        
+        .link-btn:hover { opacity: 0.7; background: white; color: black; border-color: white; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            color: #444;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
-<body class="hero-gradient">
+<body>
 
-    <nav class="fixed w-full z-50 px-6 py-4 glass flex justify-between items-center">
-        <div class="flex flex-col leading-none">
-            <span class="text-3xl font-black italic tracking-tighter text-white">DGA</span>
-            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-400 font-bold">Davidhomelibrary's German Army</span>
-        </div>
-        <div class="flex gap-4">
-            <a href="#divisions" class="hidden md:block text-sm font-bold uppercase tracking-widest self-center hover:text-blue-500 transition">Divisions</a>
-            <a href="https://www.roblox.com/communities/36016448/DGA-German-Army#!/affiliates" class="bg-blue-600 text-white px-5 py-2 rounded text-xs font-black uppercase tracking-tighter btn-hover">Join Group</a>
-        </div>
-    </nav>
-
-    <section class="h-screen flex flex-col justify-center items-center px-6 text-center">
-        <div class="reveal">
-            <h2 class="font-mono text-blue-500 tracking-[0.4em] uppercase text-sm mb-4">Elite Military Simulation</h2>
-            <h1 class="text-6xl md:text-9xl font-black tracking-tighter text-white mb-8">DGA<span class="text-blue-600">.</span></h1>
-            <p class="max-w-2xl text-gray-400 text-lg md:text-xl mb-10 leading-relaxed">
-                Welcome to the official hub of the DGA. Discipline, Honor, and Tactical Excellence. Lead by <span class="text-white font-bold">davidhomelibrary</span>.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://discord.gg/mQb5cGDc52" class="bg-white text-black px-8 py-4 font-black uppercase tracking-widest text-sm btn-hover">Main Discord</a>
-                <a href="#ranks" class="border border-white/20 px-8 py-4 font-black uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all">View Hierarchy</a>
-            </div>
-        </div>
+    <section class="hero">
+        <h1 data-lucide="shield">DGA</h1>
+        <p>A unified strategic command for the Bundeswehr. Disciplined. Professional. Ready.</p>
     </section>
 
-    <section id="ranks" class="py-24 px-6 bg-[#080808]">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-16 reveal text-center">Army <span class="text-blue-500">Hierarchy</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal">
-                <div class="glass p-6 rounded border-l-4 border-blue-500 flex justify-between items-center">
-                    <span class="uppercase font-bold tracking-widest">Enlisted Personnel</span>
-                    <span class="text-xs text-gray-500 font-mono">Schütze - Hauptgefreiter</span>
-                </div>
-                <div class="glass p-6 rounded border-l-4 border-gray-500 flex justify-between items-center">
-                    <span class="uppercase font-bold tracking-widest">NCO Corps</span>
-                    <span class="text-xs text-gray-500 font-mono">Unteroffizier - Feldwebel</span>
-                </div>
-                <div class="glass p-6 rounded border-l-4 border-orange-500 flex justify-between items-center">
-                    <span class="uppercase font-bold tracking-widest">Senior NCO</span>
-                    <span class="text-xs text-gray-500 font-mono">Stabsfeldwebel - Oberstabsfeldwebel</span>
-                </div>
-                <div class="glass p-6 rounded border-l-4 border-white flex justify-between items-center">
-                    <span class="uppercase font-bold tracking-widest">Commissioned Officers</span>
-                    <span class="text-xs text-gray-500 font-mono">Leutnant - High Command</span>
-                </div>
-            </div>
-        </div>
+    <section class="hierarchy-section">
+        <h2>View Hierarchy</h2>
+        <p style="color: var(--text-dim); font-size: 0.9rem;">Operational Structure of the German Armed Forces</p>
     </section>
 
-    <section id="divisions" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-16 reveal text-center">Elite <span class="text-blue-500">Divisions</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Military Police</h3>
-                    <p class="text-gray-500 text-sm mb-4">Internal security and discipline enforcement.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: RedsFan (L), Ralph (DG)</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/815024949/DGA-Military-Police" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/rVxhHm4SmJ" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
+    <div class="division-grid">
+        
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="truck"></i> 1st Panzer Division</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">It is an armored division of the bundeswehr. Learn to use vehicles like tanks, APC’s, Humvees, and more! Man Drup - Man To!</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                    <span><strong>XO:</strong> Personnel Assigned</span>
                 </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Secret Service</h3>
-                    <p class="text-gray-500 text-sm mb-4">Elite intelligence and executive protection.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: MarkieMark (L)</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/429281937/DGA-Secret-Service" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/c7Y7SJjyx4" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
                 </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Luftwaffe</h3>
-                    <p class="text-gray-500 text-sm mb-4">Air superiority and logistical transport.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: Evan (DG)</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/251724089/DGA-German-Air-Force" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/HsZ6ef2DA" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
-                </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Navy</h3>
-                    <p class="text-gray-500 text-sm mb-4">Maritime warfare and naval supremacy.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: MarshallVeX (L)</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/290198064/DGA-German-Navy#!/about" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/JgnquUS4kh" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
-                </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Marines</h3>
-                    <p class="text-gray-500 text-sm mb-4">Amphibious operations and frontline power.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: N/A</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/601086857/DGA-Marines#!/about" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/pFcPYvv5mf" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
-                </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Rapid Response</h3>
-                    <p class="text-gray-500 text-sm mb-4">High-speed tactical intervention team.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: N/A</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/373105701/DGA-Rapid-Response-Team" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/5vQvRFZaJM" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
-                </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">1st Panzer Division</h3>
-                    <p class="text-gray-500 text-sm mb-4">Heavy armor and breakthrough warfare.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: N/A</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/1077038019/DGA-1st-Panzer-Division" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/BcWRBfS3xU" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
-                </div>
-
-                <div class="division-card glass p-8 rounded-lg reveal">
-                    <h3 class="text-xl font-black mb-1 uppercase tracking-tighter">Congress</h3>
-                    <p class="text-gray-500 text-sm mb-4">Legislative affairs and army governance.</p>
-                    <div class="text-[10px] uppercase font-bold text-blue-500 mb-4 tracking-widest">HICOM: N/A</div>
-                    <div class="flex gap-2">
-                        <a href="https://www.roblox.com/communities/116820172/DGA-Congress" class="bg-white/10 hover:bg-white/20 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Group</a>
-                        <a href="https://discord.gg/hCeA5pSAUg" class="bg-blue-600/20 hover:bg-blue-600/40 p-2 rounded text-[10px] font-bold uppercase tracking-widest">Discord</a>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </section>
 
-    <footer class="py-20 px-6 border-t border-white/5 bg-[#050505] reveal">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-xs uppercase tracking-[0.4em] text-gray-600 font-black mb-8 italic">Personnel Credits</h2>
-            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-[11px] font-bold uppercase tracking-widest text-gray-400">
-                <p>Owner: <span class="text-white">davidhomelibrary</span></p>
-                <p>Web: <span class="text-blue-500">Carter</span></p>
-                <p>Discord: <span class="text-white">Preston</span></p>
-                <p>Mods: <span class="text-white">Mark, Ralph</span></p>
-                <p>Adverts: <span class="text-white">Keyz</span></p>
-                <p>Donors: <span class="text-white">Draconic, Evan</span></p>
-                <p>PA: <span class="text-white">Uh_Aquatic</span></p>
-                <p>OG: <span class="text-white">2.3 Cam</span></p>
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="plane"></i> Luftwaffe</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">This is a unique division made to guard the skies! From flying Planes to flying Transport Helicopters. Always in Action!</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
             </div>
-            <p class="mt-12 text-[10px] text-gray-700 font-mono">© 2026 DGA GERMAN ARMY REPUBLISHED</p>
         </div>
+
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="lock"></i> Secret Service</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">In this division we keep our trusted officials safe🎖️ From preventing surprise attacks to protests. Get Behind It!</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="badge-check"></i> Military Police</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">We guard bases and important buildings. From checking id’s and preventing protests to arresting a person that has broken a rule. Everywhere. Anytime. For Everyone.</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="anchor"></i> Navy</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">We protect and defend our seas! From catch my smugglers to going on marinetime operations. We. Serve. Germany.</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="waves"></i> Marines</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">We strike fast as frontline infantry. We protect the fatherland. Cooperative with naval forces. From land to sea - from sea to land.</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="zap"></i> Rapid Response Team</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">We are the best of the best🇩🇪 From going on airborne to stopping violent protests or responding to terrorist attacks. Ready to deploy - any time - anywhere.</p>
+                <div class="hicom-list">
+                    <span><strong>CO:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="division-btn" onclick="this.classList.toggle('active')">
+            <h3><i data-lucide="landmark"></i> Congress</h3>
+            <span class="status-text">Click to View Dossier</span>
+            <div class="division-info">
+                <p class="desc">We are the officials. We send, protect, and plan. To The German People!🫡</p>
+                <div class="hicom-list">
+                    <span><strong>Chanc:</strong> Personnel Assigned</span>
+                </div>
+                <div class="links">
+                    <a href="#" class="link-btn ds-btn">Communications</a>
+                    <a href="#" class="link-btn rbx-btn">Registry</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 DGA Bundeswehr | Strategic Defense Command
     </footer>
 
     <script>
-        ScrollReveal().reveal('.reveal', {
-            delay: 200,
-            distance: '30px',
-            duration: 1000,
-            origin: 'bottom',
-            interval: 100
-        });
+        lucide.createIcons();
     </script>
 </body>
 </html>
