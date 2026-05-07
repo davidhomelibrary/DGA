@@ -7,17 +7,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/scrollreveal"></script>
-    <style>
-        :root { --dga-blue: #3b82f6; --dga-grey: #1a1a1a; }
-        body { background-color: #050505; color: #e5e5e5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .hero-gradient { background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent); }
-        .btn-hover { transition: all 0.3s ease; }
-        .btn-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(59, 130, 246, 0.5); }
-        .division-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .division-card:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--dga-blue); }
-        html { scroll-behavior: smooth; }
-    </style>
+<style>
+    :root {
+        --dga-blue: #60a5fa;
+        --dga-grey: #1a1a1a;
+    }
+
+    body {
+        background-color: #050505;
+        color: #f5f5f5;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-gradient {
+        background:
+            radial-gradient(circle at top right, rgba(96, 165, 250, 0.14), transparent 40%),
+            linear-gradient(to bottom, #050505, #080808);
+    }
+
+    .btn-hover {
+        transition: all 0.3s ease;
+    }
+
+    .btn-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px -10px rgba(96, 165, 250, 0.6);
+    }
+
+    .division-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .division-card:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: var(--dga-blue);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    p {
+        color: #cfcfcf;
+    }
+
+    .text-gray-400 {
+        color: #d1d5db !important;
+    }
+
+    .text-gray-500 {
+        color: #b0b0b0 !important;
+    }
+
+    .text-gray-600 {
+        color: #9ca3af !important;
+    }
+
+    .text-gray-700 {
+        color: #7c7c7c !important;
+    }
+
+    .text-blue-500,
+    .text-blue-600 {
+        color: #60a5fa !important;
+    }
+
+    a:hover {
+        color: white;
+    }
+</style>
 </head>
 <body class="hero-gradient">
 
